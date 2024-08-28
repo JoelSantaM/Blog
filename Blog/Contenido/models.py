@@ -10,9 +10,11 @@ class Usuario(models.Model):
         return str(self.nombre)
 
 class Producto(models.Model):
-    nombre = models.CharField(max_length=100)
-    descripcion = models.TextField()
-    cuerpo =models.TextField()
+    titulo = models.CharField(max_length=100)
+    contenido = models.TextField()
+    fecha_publicacion = models.DateField()
+    categoria = models.CharField(max_length=100)
+    autor = models.CharField(max_length=100)
 
     def __str__(self):
         return str(self.nombre)

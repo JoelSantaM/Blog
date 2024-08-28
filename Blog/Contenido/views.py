@@ -12,12 +12,12 @@ def listar_usuarios(request):
 def listar_productos(request):
     query = request.GET.get('q')
     productos_list = Producto.objects.all()
-    paginator = Paginator(productos_list,5)
+    paginator = Paginator(productos_list,10)
     page_number = request.GET.get('page')
     productos = paginator.get_page('page_number')
 
     if query:
-        productos_list = productos_list.filter(Q(nombre__icontains=query)| Q(descripcion__icontains=query))
+        productos_list = productos_list.filter(Q(categoria__icontains=query)| Q(fecha_publicacion__icontains=query))
     
     return render(request, 'listar_productos.html', {'productos': productos})
 
