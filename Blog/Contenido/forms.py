@@ -6,7 +6,7 @@ from django.utils import timezone
 class ProductoModelForm(forms.ModelForm):
     class Meta:
         model = Producto
-        fields = ['titulo', 'cantenido', 'fecha_publicacion', 'categoria', 'autor']
+        fields = ['titulo', 'contenido', 'fecha_publicacion', 'categoria', 'autor']
     
     def clean_titulo(self):
         titulo = self.cleaned_data.get('titulo')

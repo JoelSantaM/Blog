@@ -1,13 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Lista de Productos</title>
+    <title>Lista de Contenido</title>
 </head>
 <body>
-    <h1>Lista de Productos</h1>
+    <h1>Lista de Contenido</h1>
     <form method="GET">
         Fecha de publicacion: <input type="date" name="fecha_publicacion">
-        Categoria
+    <button type="submit">Filtrar</button>
     </form>
+    <form method="GET">
+        Buscar: <input type="text" categoria="q">
+        <button type="submit">Buscar</button>
+    </form>
+    <ul>
+        {% for producto in productos %}
+            <li>{{ producto.titulo }} - {{ producto.fecha_publicacion }} - {{ producto.categoria }} - {{ producto.autor }}</li>
+        {% endfor %}
+    </ul>
+    <div>
+        {% if productos.has_previous %}
+            <a href="?page={{ productos.previous_page_number }}">Anterior</a>
+        {% endif %}
+
+        <span>pagina{{ producto.number }} de {{producto.paginator.num_pages}}</span>
+
+        {% if producto.has_next %}
+        <a href="?page={{ productos.next_page_number }}">Siguiente</a>
+    {% endif %}
+    </div>
+    <a href="{% url 'agregar_producto' %}">Agregar Nuevo Contenido</a>
+    <a href="{% url 'inicio' %}">Volver a inicio</a>
 </body>
 </html>
