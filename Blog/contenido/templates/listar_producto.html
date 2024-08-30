@@ -6,12 +6,10 @@
 <body>
     <h1>Lista de Contenido</h1>
     <form method="GET">
-        Fecha de publicacion: <input type="date" name="fecha_publicacion">
+        Fecha de publicacion: <input type="date" name="fecha_publicacion" value="{{ request.GET.fecha_publicacion }}">
+        Categoria: <input type="text" name="categoria" value="{{ request.Get.categoria  }}">
+        Buscar: <input type="text" name="q" value="{{ request.GET.q }}">
     <button type="submit">Filtrar</button>
-    </form>
-    <form method="GET">
-        Buscar: <input type="text" categoria="q">
-        <button type="submit">Buscar</button>
     </form>
     <ul>
         {% for producto in productos %}

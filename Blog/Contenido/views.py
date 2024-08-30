@@ -10,14 +10,23 @@ def listar_usuarios(request):
     return render(request,'listar_usuarios.html',{ 'usuarios': usuarios })
 
 def listar_productos(request):
+    fecha_publicacion = request.GET.get('fecha_publicacion')
+    categoria = request.GET.get('categoria')
     query = request.GET.get('q')
     productos_list = Producto.objects.all()
-    paginator = Paginator(productos_list,10)
-    page_number = request.GET.get('page')
-    productos = paginator.get_page('page_number')
+    
+    if fecha_publicacion:
+        productos_list = productos_list.filter(fecha_publicacion=fecha_publicacion)
+    
+    if categoria:
+        productos_list = productos_list.filter(categoria=categoria)
 
     if query:
-        productos_list = productos_list.filter(Q(categoria__icontains=query)| Q(fecha_publicacion__icontains=query))
+        productos_list = productos_list.filter(Q(titulo__icontains=query)| Q(contenido__icontains=query))
+
+    paginator = Paginator(productos_list,10)
+    page_number = request.GET.get('page')
+    productos = paginator.get_page(page_number)
     
     return render(request, 'listar_productos.html', { 'productos': productos })
 
@@ -37,13 +46,14 @@ def agregar_producto(request):
         return render(request, 'agregar_producto.html', { 'form' : form })
 
 
-def agregar_usuario(requets):
-    if requets.method == 'POST':
-        form = UsuarioModelForm(requets.POST)
+def agregar_usuario(request):
+    if request.method == 'POST':
+        form = UsuarioModelForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('listar_usuarios')
 
     else:
         form = UsuarioModelForm()
-    return render(requets, 'agregar_usuarios.html', { 'form': form })
+    return render(request, 'agregar_usuarios.html', { 'form': form })
+

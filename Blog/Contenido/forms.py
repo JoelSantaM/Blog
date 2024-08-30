@@ -24,3 +24,9 @@ class UsuarioModelForm(forms.ModelForm):
     class Meta:
         model = Usuario
         fields = ['nombre', 'email']
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if not email.endswith('@ejemplo.com'):
+            raise forms.ValidationError("El correo no es valido")
+        return email
