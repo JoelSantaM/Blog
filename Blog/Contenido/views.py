@@ -7,7 +7,7 @@ from .forms import ProductoModelForm, UsuarioModelForm
 
 def listar_usuarios(request):
     usuarios = Usuario.objects.all()
-    return render(request,'listar_usuarios.html',{'usuarios': usuarios})
+    return render(request,'listar_usuarios.html',{ 'usuarios': usuarios })
 
 def listar_productos(request):
     query = request.GET.get('q')
@@ -19,10 +19,11 @@ def listar_productos(request):
     if query:
         productos_list = productos_list.filter(Q(categoria__icontains=query)| Q(fecha_publicacion__icontains=query))
     
-    return render(request, 'listar_productos.html', {'productos': productos})
+    return render(request, 'listar_productos.html', { 'productos': productos })
 
 def inicio(request):
     return render(request, 'inicio.html')
+
 
 def agregar_producto(request):
     if request.method == 'POST':
@@ -32,9 +33,10 @@ def agregar_producto(request):
             return redirect('listar_productos')
     
     else:
-        form = ProductoModelForm
-        return render(request, 'agregar_prodcuto.html',{'form' : form})
-    
+        form = ProductoModelForm()
+        return render(request, 'agregar_producto.html', { 'form' : form })
+
+
 def agregar_usuario(requets):
     if requets.method == 'POST':
         form = UsuarioModelForm(requets.POST)

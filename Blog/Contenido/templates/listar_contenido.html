@@ -15,18 +15,18 @@
     </form>
     <ul>
         {% for producto in productos %}
-            <li>{{ producto.titulo }} - {{ producto.fecha_publicacion }} - {{ producto.categoria }} - {{ producto.autor }}</li>
+            <li>{{ producto.titulo }} - {{ producto.contenido }} - {{ producto.fecha_publicacion }} - {{ producto.categoria }} - {{ producto.autor }}</li>
         {% endfor %}
     </ul>
     <div>
         {% if productos.has_previous %}
-            <a href="?page={{ productos.previous_page_number }}">Anterior</a>
+            <a href="?page={{ producto.previous_page_number }}">Anterior</a>
         {% endif %}
 
         <span>pagina{{ producto.number }} de {{producto.paginator.num_pages}}</span>
 
         {% if producto.has_next %}
-        <a href="?page={{ productos.next_page_number }}">Siguiente</a>
+        <a href="?page={{ producto.next_page_number }}">Siguiente</a>
     {% endif %}
     </div>
     <a href="{% url 'agregar_producto' %}">Agregar Nuevo Contenido</a>
