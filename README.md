@@ -30,3 +30,12 @@ Agregar Nueva Publicación:
 
 Instalación y Ejecución Local
     Clona el repositorio a tu máquina local:
+    https://github.com/JoelSantaM/Blog.git
+
+    Aplica las migraciones:
+    python manage.py migrate
+
+    Ejecuta el servidor de desarrollo:
+    python manage.py runserver
+
+    Abre tu navegador y navega a http://127.0.0.1:8000/ para ver el blog en funcionamiento.
