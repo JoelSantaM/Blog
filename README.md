@@ -29,13 +29,22 @@ Agregar Nueva Publicación:
     Permite a los usuarios agregar nuevas publicaciones al blog.
 
 Instalación y Ejecución Local
-    Clona el repositorio a tu máquina local:
-    https://github.com/JoelSantaM/Blog.git
+   Clonar el repositorio
+git clone https://github.com/JoelSantaM/Blog.git
 
-    Aplica las migraciones:
-    python manage.py migrate
+    Navegar al directorio del repositorio
+cd Blog
 
-    Ejecuta el servidor de desarrollo:
-    python manage.py runserver
+    Crear y activar un entorno virtual
+python -m venv env
+source env/bin/activate  # macOS/Linux
+env\Scripts\activate     # Windows
 
-    Abre tu navegador y navega a http://127.0.0.1:8000/ para ver el blog en funcionamiento.
+    Instalar dependencias
+pip install -r requirements.txt
+
+    Aplicar migraciones
+python manage.py migrate
+
+    Iniciar el servidor de desarrollo
+python manage.py runserver
