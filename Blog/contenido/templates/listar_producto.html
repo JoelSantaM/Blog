@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
     <title>Lista de Contenido</title>
 </head>
@@ -7,26 +6,31 @@
     <h1>Lista de Contenido</h1>
     <form method="GET">
         Fecha de publicacion: <input type="date" name="fecha_publicacion" value="{{ request.GET.fecha_publicacion }}">
-        Categoria: <input type="text" name="categoria" value="{{ request.Get.categoria  }}">
+        Categoria: <input type="text" name="categoria" value="{{ request.GET.categoria  }}">
         Buscar: <input type="text" name="q" value="{{ request.GET.q }}">
     <button type="submit">Filtrar</button>
     </form>
     <ul>
         {% for producto in productos %}
-            <li>{{ producto.titulo }} - {{ producto.contenido }} - {{ producto.fecha_publicacion }} - {{ producto.categoria }} - {{ producto.autor }}</li>
+            <li>
+                <a href="{% url 'detalle_publicacion' producto.id %}">
+                    {{ producto.titulo }} - {{ producto.fecha_publicacion }} - {{ producto.categoria }} - {{ producto.autor }}
+                </a>
+            </li>
         {% endfor %}
     </ul>
     <div>
         {% if productos.has_previous %}
-            <a href="?page={{ producto.previous_page_number }}">Anterior</a>
+            <a href="?page= {{ productos.previous_page_number }}">Anterior</a>
         {% endif %}
 
-        <span>pagina{{ producto.number }} de {{producto.paginator.num_pages}}</span>
+        <span>Pagina {{ productos.number }} de {{ productos.paginator.num_pages }}</span>
 
-        {% if producto.has_next %}
-        <a href="?page={{ producto.next_page_number }}">Siguiente</a>
-    {% endif %}
+        {% if productos.has_next %}
+            <a href="?page={{ productos.next_page_number }}">Siguiente</a>
+        {% endif %}
     </div>
+    
     <a href="{% url 'agregar_producto' %}">Agregar Nuevo Contenido</a>
     <a href="{% url 'inicio' %}">Volver a inicio</a>
 </body>

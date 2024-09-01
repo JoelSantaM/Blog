@@ -1,14 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
   <title>Pagina de incio</title>
 </head>
 <body>
-  <h1>Bienvenido al Blog</h1>
-  <p>Aqui nuestras secciones:</p>
+  <h1>Bienvenido al blog</h1>
   <ul>
-    <li><a href="{% url 'listar_productos' %}">Contenido</a></li>
-    <li><a href="{% url 'listar_usuarios' %}">Usuarios</a></li>
+    <li><a href="{% url 'listar_producto' %}">Post</a></li>
+    <li><a href="{% url 'agregar_producto' %}">Nuevo Post</a></li>
   </ul>
 </body>
 </html>

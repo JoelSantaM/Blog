@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<head>
+    <title>{{ producto.titulo }}</title>
+</head>
+<body>
+    <p><strong>Titulo: </strong>{{ producto.titulo }}</p>
+    <p><strong>Autor: </strong>{{ producto.autor }}</p>
+    <p><strong>Fecha de publicacion </strong>{{ producto.fecha_publicacion }}</p>
+    <p><strong>Categoria </strong> {{ producto.categoria }}</p>
+    <p>{{ producto.contenido }}</p>
+    <a href="{% url 'listar_producto' %}">Ver contenido</a>
+    <a href="{% url 'inicio' %}">Volver a inicio</a>
+</body>
+</html>

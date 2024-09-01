@@ -4,7 +4,7 @@
   <title>Agregar Contenido</title>
 </head>
 <body>
-  <h1>Agregar Nuevo Contenido</h1>
+  <h1>Agregar Post</h1>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
@@ -19,8 +19,7 @@
     {% endif %}
     <button type="submit">Guardar Contenido</button> 
   </form>
-  <a href="{% url 'listar_productos' %}">Ver contenido</a>
-  <a href="{% url 'listar_usuarios' %}">Ver usuarios</a>
+  <a href="{% url 'listar_producto' %}">Ver Post</a>
   <a href="{% url 'inicio' %}">Volver a inicio</a>
 </body>
 </html>
