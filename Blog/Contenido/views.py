@@ -9,7 +9,7 @@ from .forms import ProductoModelForm
 def listar_productos(request):
     query = request.GET.get('q')
     categoria = request.GET.get('categoria')
-
+    fecha_publicacion = request.GET.get('fecha_publicacion')
     publicaciones = Producto.objects.all()
 
     if query:
@@ -17,6 +17,9 @@ def listar_productos(request):
 
     if categoria:
         publicaciones = publicaciones.filter(categoria__icontains=categoria)
+    
+    if fecha_publicacion:
+        publicaciones = publicaciones.filter(fecha_publicacion=fecha_publicacion)
     
     paginator = Paginator(publicaciones, 10)
     page_number = request.GET.get('page')
